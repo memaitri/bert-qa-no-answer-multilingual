@@ -28,3 +28,7 @@ train_config.json
 # Misc
 *.mp4
 .env
+
+# Raw screenshot uploads (renamed copies live in docs/)
+WhatsApp*.jpeg
+WhatsApp*.jpg
