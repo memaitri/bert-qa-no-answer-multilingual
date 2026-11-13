@@ -1,0 +1,30 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Model weights & HuggingFace cache
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.pkl
+
+# Generated outputs (reproducible by running scripts)
+calibration_cache.json
+threshold.json
+threshold_hi.json
+reliability_diagram.png
+risk_coverage.png
+threshold_sweep.png
+threshold_sweep_full.png
+full_dev_report.png
+results_multilingual.csv
+results_multilingual.md
+squad_samples.json
+loss_curve.png
+train_config.json
+
+# Misc
+*.mp4
+.env

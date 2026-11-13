@@ -1,0 +1,86 @@
+ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING — OVERVIEW DOCUMENT
+=================================================================
+
+## 1. History of Artificial Intelligence
+
+Artificial Intelligence (AI) was formally founded as a field at the Dartmouth Conference in 1956, organized by John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon. John McCarthy is widely credited as the father of AI and also coined the term "Artificial Intelligence" during this conference.
+
+Early AI research in the 1950s and 1960s focused on symbolic reasoning and problem-solving. Alan Turing, a British mathematician and computer scientist, proposed the famous Turing Test in 1950 as a measure of machine intelligence. The test evaluates whether a machine can exhibit conversational behavior indistinguishable from a human.
+
+The first AI winter occurred in the mid-1970s when funding and interest declined after early promises went unfulfilled. A second AI winter followed in the late 1980s. Research revived in the 1990s with the rise of machine learning and again dramatically in the 2010s with deep learning.
+
+## 2. Machine Learning
+
+Machine learning is a subset of AI that gives systems the ability to learn from data without being explicitly programmed. The term was coined by Arthur Samuel in 1959. Machine learning algorithms build a model based on sample data, known as training data, to make predictions or decisions.
+
+There are three main types of machine learning:
+
+- Supervised Learning: The model is trained on labeled data, where the correct output is provided for each input. Examples include image classification and spam detection.
+- Unsupervised Learning: The model finds patterns in unlabeled data without explicit guidance. Examples include clustering and dimensionality reduction.
+- Reinforcement Learning: An agent learns by interacting with an environment and receiving rewards or penalties. AlphaGo, developed by DeepMind, used reinforcement learning to defeat world champion Go player Lee Sedol in March 2016.
+
+## 3. Deep Learning and Neural Networks
+
+Deep learning is a subfield of machine learning that uses neural networks with many layers (hence "deep") to learn representations of data. The concept of artificial neural networks was inspired by the biological neural networks in the human brain.
+
+Geoffrey Hinton, Yann LeCun, and Yoshua Bengio are considered the pioneers of deep learning and jointly received the Turing Award in 2018 for their contributions. They are often referred to as the "Godfathers of Deep Learning."
+
+The transformer architecture, introduced in the paper "Attention Is All You Need" by Vaswani et al. in 2017, revolutionized natural language processing. BERT (Bidirectional Encoder Representations from Transformers) was developed by Google and published in 2018. BERT achieved state-of-the-art results on 11 NLP tasks when it was released.
+
+## 4. Natural Language Processing
+
+Natural Language Processing (NLP) is the branch of AI concerned with enabling computers to understand, interpret, and generate human language. Early NLP systems relied on handcrafted rules, but modern systems use statistical and deep learning methods.
+
+Key NLP tasks include:
+- Text classification: assigning categories to documents (e.g., sentiment analysis)
+- Named Entity Recognition (NER): identifying entities such as names, dates, and locations
+- Machine translation: converting text from one language to another
+- Question answering: extracting or generating answers to natural language questions
+- Text summarization: producing a concise summary of a longer document
+
+The SQuAD (Stanford Question Answering Dataset) was introduced by Rajpurkar et al. in 2016 and contains over 100,000 question-answer pairs derived from Wikipedia articles. SQuAD 2.0, released in 2018, added over 50,000 unanswerable questions to make the task more realistic.
+
+## 5. Large Language Models
+
+Large Language Models (LLMs) are neural network models trained on massive amounts of text data. GPT-3, developed by OpenAI and released in 2020, contains 175 billion parameters and was one of the largest language models at the time of its release. GPT-4 was released by OpenAI in March 2023.
+
+BERT uses a bidirectional transformer encoder and is pre-trained using two tasks: Masked Language Modeling (MLM) and Next Sentence Prediction (NSP). The base version of BERT has 110 million parameters, while BERT Large has 340 million parameters.
+
+RoBERTa (Robustly Optimized BERT Pretraining Approach), developed by Facebook AI Research, improved upon BERT by training with more data, larger batches, and removing the Next Sentence Prediction objective. The deepset/roberta-base-squad2 model used in this project is a RoBERTa-base model fine-tuned on SQuAD 2.0 for extractive question answering.
+
+## 6. Computer Vision
+
+Computer vision is the field of AI that trains computers to interpret and understand visual information from the world. The ImageNet Large Scale Visual Recognition Challenge (ILSVRC) spurred rapid progress in computer vision. AlexNet, developed by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton, won the 2012 ImageNet competition with a top-5 error rate of 15.3%, significantly outperforming traditional methods.
+
+Convolutional Neural Networks (CNNs) are the primary architecture used in computer vision. They use convolutional layers to automatically learn spatial hierarchies of features from images.
+
+## 7. AI Ethics and Responsible AI
+
+AI ethics concerns the moral implications and societal impacts of artificial intelligence systems. Key concerns include:
+
+- Bias and fairness: AI systems can perpetuate or amplify biases present in training data.
+- Transparency and explainability: Many deep learning models are "black boxes" whose decisions are hard to interpret.
+- Privacy: AI systems often require large amounts of personal data for training.
+- Job displacement: Automation driven by AI may displace workers in various industries.
+
+The European Union's AI Act, proposed in 2021 and passed in 2024, is the world's first comprehensive legal framework for regulating AI. It classifies AI systems by risk level and imposes different requirements based on that classification.
+
+## 8. Robotics and Autonomous Systems
+
+Robotics combines AI with mechanical engineering to create machines that can perform physical tasks. Boston Dynamics, founded in 1992 as a spin-off from MIT, is known for creating advanced robots including Spot (a quadruped robot) and Atlas (a bipedal humanoid robot).
+
+Self-driving cars are a prominent application of AI in robotics. Waymo, originally the Google Self-Driving Car Project, launched its first fully autonomous ride-hailing service without safety drivers in Phoenix, Arizona in 2020.
+
+## 9. AI in Healthcare
+
+AI is increasingly used in healthcare for diagnosis, drug discovery, and personalized treatment. DeepMind's AlphaFold, released in 2021, solved the protein folding problem — predicting a protein's 3D structure from its amino acid sequence — which had been an unsolved challenge in biology for 50 years. AlphaFold predicted structures for over 200 million proteins.
+
+IBM Watson for Oncology was an early attempt to apply AI to cancer treatment recommendations, though it faced criticism for providing unsafe treatment suggestions in some cases.
+
+## 10. This Project: Extractive QA
+
+This project implements an extractive question answering system using the deepset/roberta-base-squad2 model. The system is trained on SQuAD 2.0 and can answer questions by extracting spans directly from a provided passage, or abstain if the answer is not present.
+
+The no-answer detection works by comparing the null score (start and end logits at the CLS token) against the best span score. If the null score exceeds the best span score by more than a tunable threshold, the system abstains rather than returning a potentially incorrect answer.
+
+The project was developed as part of Topic 180 and includes evaluation on the SQuAD 2.0 validation set, threshold tuning, a Gradio-based demo application, confidence calibration using Platt scaling and isotonic regression, and a retriever-reader pipeline for multi-document question answering.
