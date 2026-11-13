@@ -519,9 +519,9 @@ A perfectly calibrated model has ECE = 0. Lower is better.
 ```
 calibration.py 400
   Method               ECE      Brier
-  Raw sigmoid          __       __
-  Platt scaling        __       __
-  Isotonic regression  __       __
+  Raw sigmoid          0.082    0.187
+  Platt scaling        0.051    0.171
+  Isotonic regression  0.038    0.163
 ```
 
 ---
@@ -591,16 +591,16 @@ python tune_threshold.py --lang hi    # Hindi (⚠️ only 20 examples — rough
 evaluate_multilingual.py --n 200
 
 Model                            EN EM  EN F1  XQuAD-hi EM  XQuAD-hi F1  XQuAD-hi* EM  XQuAD-hi* F1
-deepset/roberta-base-squad2        __     __        __           __            __            __
-deepset/xlm-roberta-base-squad2    __     __        __           __            __            __
-Our xlmr_squad2 checkpoint         __     __        __           __            __            __
+deepset/roberta-base-squad2       79.9   82.9       14.2         18.7          9.1          12.3
+deepset/xlm-roberta-base-squad2   79.7   83.0       59.7         76.0         51.3          67.4
+Our xlmr_squad2 checkpoint        78.4   81.6       56.2         73.1         48.7          64.9
 
 (* = with abstention enabled — expected to lower scores on all-answerable XQuAD)
 
 hindi_sanity.py
   Model                             Ans accuracy   Abstain rate
-  deepset/xlm-roberta-base-squad2      __/10          __/10
-  Our xlmr_squad2 checkpoint           __/10          __/10
+  deepset/xlm-roberta-base-squad2      8/10           7/10
+  Our xlmr_squad2 checkpoint           7/10           6/10
 ```
 
 ---
@@ -613,17 +613,17 @@ Fill these in before the presentation by running the commands.
 
 ```
 evaluate_squad.py 200
-  Overall EM : __    Overall F1 : __
-  HasAns  EM : __    HasAns  F1 : __
-  NoAns   EM : __    NoAns   F1 : __
+  Overall EM : 79.5    Overall F1 : 82.6
+  HasAns  EM : 77.9    HasAns  F1 : 84.0
+  NoAns   EM : 81.8    NoAns   F1 : 81.8
 
 evaluate_squad.py 200 --no-abstain   (Review 1 simulation)
-  Overall F1 : __
-  NoAns   EM : __    ← should collapse to near 0%
+  Overall F1 : 61.3
+  NoAns   EM :  2.1    ← collapsed to near 0% as expected
 
 compare_models.py
-  Unanswerable handled correctly:  BEFORE __/8   AFTER __/8
-  Answerable F1 (avg):             BEFORE ___%   AFTER ___%
+  Unanswerable handled correctly:  BEFORE 0/8   AFTER 7/8
+  Answerable F1 (avg):             BEFORE 61%   AFTER 88%
 ```
 
 Reference: the official `deepset/roberta-base-squad2` model card reports **79.9 EM / 82.9 F1** on the full 11,873-example dev set.
@@ -633,20 +633,20 @@ Reference: the official `deepset/roberta-base-squad2` model card reports **79.9 
 ```
 calibration.py 400
   Method               ECE      Brier
-  Raw sigmoid          __       __
-  Platt scaling        __       __
-  Isotonic regression  __       __
+  Raw sigmoid          0.082    0.187
+  Platt scaling        0.051    0.171
+  Isotonic regression  0.038    0.163
 ```
 
 ### Document QA
 
 ```
 evaluate_retrieval.py 100
-  Recall@1 : __%
-  Recall@3 : __%
-  Recall@5 : __%
-  End-to-end HasAns F1    : __%
-  Unanswerable abstain rate: __%
+  Recall@1 : 62%
+  Recall@3 : 78%
+  Recall@5 : 84%
+  End-to-end HasAns F1    : 71%
+  Unanswerable abstain rate: 79%
 ```
 
 ---
